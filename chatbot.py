@@ -1,12 +1,13 @@
 import sys
 from io import BytesIO
+from telegram import ReplyKeyboardMarkup,KeyboardButton
 import telegram
 from flask import Flask, request, send_file
 from fsm import TocMachine
 from choose import *
 
 API_TOKEN = '397040538:AAEPi9-yoIPjox1xyrYkfUtDSX6aVrAxVUg'
-WEBHOOK_URL = 'https://57fb9e62.ngrok.io/hook'
+WEBHOOK_URL = 'https://b0a80be7.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -56,6 +57,16 @@ machine = TocMachine(
     auto_transitions=False,
     show_conditions=True,
 )
+def btn():
+    button_list = [
+    [KeyboardButton("noodle"),
+    KeyboardButton("rice")],
+    [KeyboardButton("cookie"),
+     KeyboardButton("cake")]
+    ]
+    reply_markup = ReplyKeyboardMarkup(button_list)
+    bot.send_message(update.message.chat_id, "Recipes", reply_markup=reply_markup)
+
 def choice():
     global input
     input = input.lower()
@@ -74,6 +85,7 @@ def choice():
         cook(update)
     if input == "/start":
         update.message.reply_text("You can choose:\n noodle\n rice\n coockie\n cake")
+    btn()
         
 def _set_webhook():
     status = bot.set_webhook(WEBHOOK_URL)
@@ -87,9 +99,10 @@ def _set_webhook():
 @app.route('/hook', methods=['POST'])
 def webhook_handler():
     global update
-    update = telegram.Update.de_json(request.get_json(force=True), bot)
     global input
+    update = telegram.Update.de_json(request.get_json(force=True), bot)
     input = update.message.text
+    print(input)
     choice()
     return 'ok'
 
@@ -104,5 +117,4 @@ def show_fsm():
 if __name__ == "__main__":
     _set_webhook()
     app.run()
-    
 
