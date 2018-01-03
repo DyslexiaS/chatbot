@@ -11,6 +11,7 @@ cookie_url = "https://icook.tw/categories/17"
 url_list = []
 
 def recipe(eat):
+    choose_url = noodle_url
     if eat == "noodle":
         choose_url = noodle_url
     elif eat == "rice":
