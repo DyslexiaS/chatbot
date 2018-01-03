@@ -68,7 +68,7 @@ def choice():
         cook(update)
     elif input == "cookie":
         machine.cookie(update);
-        cook(update)s
+        cook(update)
     elif input == "cake":
         machine.cake(update);
         cook(update)
