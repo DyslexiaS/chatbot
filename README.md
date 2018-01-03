@@ -59,10 +59,4 @@ Every time `user` state is triggered to `what you want to eat` to another state,
     
 	* Input: "cake"
 		* Reply: "choose cake"
-    
-
-
-
-## Author
-[Lee-W](https://github.com/Lee-W)
 
