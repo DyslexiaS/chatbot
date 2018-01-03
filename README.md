@@ -1,10 +1,7 @@
-#TOC Project 2017
-------------------------------------------
-##cook_bot
+# TOC Project 2017
+## cook_bot
 You can choose : noodle, rice, cookie, cake,
 and you will get a recipe.
-# TOC Project 2017
-
 ## Setup
 
 ### Prerequisite
